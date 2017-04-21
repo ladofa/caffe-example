@@ -3,7 +3,7 @@ layer {
   name: "inputdata"
   type: "MemoryData"
   top: "fulldata"
-  top: "fakelabel"
+  top: "label"
   include {
     phase: TRAIN
   }
@@ -19,7 +19,7 @@ layer {
   name: "test_inputdata"
   type: "MemoryData"
   top: "fulldata"
-  top: "fakelabel"
+  top: "label"
   include {
     phase: TEST
   }
@@ -45,13 +45,16 @@ layer {
       type: "constant"
     }
   }
+
 }
+
 layer {
   name: "fc6sig"
   bottom: "fc6"
   top: "fc6"
   type: "Sigmoid"
 }
+
 layer {
   name: "fc7"
   type: "InnerProduct"
@@ -66,6 +69,7 @@ layer {
       type: "constant"
     }
   }
+
 }
 layer {
   name: "output"
@@ -80,6 +84,6 @@ layer {
   name: "loss"
   type: "SigmoidCrossEntropyLoss"
   bottom: "fc7"
-  bottom: "fakelabel"
+  bottom: "label"
   top: "loss"
 }
